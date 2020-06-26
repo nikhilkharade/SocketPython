@@ -15,3 +15,15 @@ server_socket.listen()
 socket_list = [server_socket]
 
 clients = {}
+
+def recieve_message(client_socket):
+    try:
+        message_header = client_socket.recv(HEADER_LENGTH)
+        if not len(message_header):
+            return false
+        
+        message_length = int(message_header.decode("utf-8").strip())
+        return {"header" : message_header , "data" : client_socket.recv(message_length)}
+    
+    try:
+   
